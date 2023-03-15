@@ -1,49 +1,38 @@
 import React from 'react'
-// import { FixedSizeList as List } from 'react-window'
+import { VariableSizeList as List } from 'react-window'
 
-const ResultsContainer = ({ /* currentData */ }) => {
+const ResultsContainer = ({ currentData, page }) => {
 
-    // const Row = ({ index, style }) => (
-    //     <div style={style}>Test {index}</div>
-    // )
+    const rowHeights = new Array(currentData.length)
+        .fill(100)
 
-    // const Test = ({index, style}) => (
-    //     <div style={style}>
-    //         {currentData.map(el=>{
-    //             <p>{el.word}</p>
-    //         })}
-    //         {console.log(currentData)}
-    //     </div>
-    // )
+    const getItemSize = index => rowHeights[index];
+
+    const Result = ({ index, style }) => (
+        <div style={style}>
+            <h3>
+                {currentData[index + (page * 10)].word}
+            </h3>
+            <h4>
+                {currentData[index + (page * 10)].definition}
+            </h4>
+            <br />
+        </div>
+    );
 
     return (
         <div>
-
-            {/* <List
-                height={150}
-                itemCount={50}
-                itemSize={35}
-                width={200}
+            <List
+                height={600}
+                itemCount={
+                    currentData.length - (page * 10) >= 10
+                        ? 10
+                        : currentData.length % 10}
+                itemSize={getItemSize}
+                width={'100%'}
             >
-                {Test}
-            </List> */}
-            {/* <table>
-                <thead>
-                    <tr>
-                        <th><h1>Word</h1></th>
-                        <th><h1>Meaning</h1></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {currentData.map((el) => {
-                        <tr> */}
-            {/* <td>{el.word}</td> */}
-            {/* <td>{el.definition}</td> */}
-            {/* {console.log(el)} */}
-            {/* </tr>
-                    })}
-                </tbody>
-            </table> */}
+                {Result}
+            </List>
         </div>
     )
 }
