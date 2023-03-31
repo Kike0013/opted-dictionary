@@ -1,10 +1,6 @@
-import React, { useRef } from 'react'
+import React from 'react'
 
-const Navbar = ({ handleSearch }) => {
-
-  const searchValue = useRef();
-  const exactValue = useRef();
-  const defValue = useRef();
+const Navbar = ({ handleSearch, searchValue, exactValue, defValue }) => {
 
   return (
     <div>
@@ -35,9 +31,9 @@ const Navbar = ({ handleSearch }) => {
           <label htmlFor='include-definition'>Search in definitions</label>
         </form>
       </div>
-      <div>
+      {/* <div>
         <button>My favs</button>
-      </div>
+      </div> */}
     </div>
   )
 }

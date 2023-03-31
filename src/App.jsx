@@ -1,7 +1,7 @@
 import Letters from './components/Letters'
 import Navbar from './components/Navbar'
 import ResultsContainer from './components/ResultsContainer'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { loadDictionary } from './core/services/netService/dictionaryService'
 import './styles/App.css'
 import { Pagination } from './components/Pagination'
@@ -11,9 +11,14 @@ function App() {
 
   const [data, setData] = useState([])
   const [currentData, setCurrentData] = useState([])
+  const [isLetter, setIsLetter] = useState(false)
   // const [isLoading, setIsLoading] = useState(true)
   const [notFound, setNotFound] = useState(false)
   const [page, setPage] = useState(0)
+
+  const searchValue = useRef();
+  const exactValue = useRef();
+  const defValue = useRef();
 
   useEffect(() => {
     loadDictionary()
@@ -32,6 +37,8 @@ function App() {
   }, [])
 
   const searchByLetter = (letter) => {
+    !isLetter && setIsLetter(true)
+    resetInputs(searchValue, exactValue, defValue)
     let arr = data.filter(el => el.word.indexOf(letter) === 0)
     setCurrentData(arr)
     setPage(0)
@@ -40,6 +47,7 @@ function App() {
 
   const handleSearch = (searchValue, isExact, isDef, event) => {
     event && event.preventDefault();
+    setIsLetter(false)
     if (!searchValue.current.value) return null
 
     let arr;
@@ -60,6 +68,12 @@ function App() {
     setPage(0)
   }
 
+  const resetInputs = (inputSearch, exactCheck, defCheck) => {
+    inputSearch.current.value = '';
+    exactCheck.current.checked = false;
+    defCheck.current.checked = false;
+  }
+
   const prevPage = () => !page
     ? null
     : setPage(prevPage => prevPage - 1)
@@ -70,7 +84,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar handleSearch={handleSearch} />
+      <Navbar handleSearch={handleSearch} searchValue={searchValue} exactValue={exactValue} defValue={defValue} />
       <Letters searchByLetter={searchByLetter} />
       {!notFound ? <ResultsContainer currentData={currentData} page={page} /> : <NotFound />}
       <Pagination nextPage={nextPage} prevPage={prevPage} />
@@ -83,14 +97,11 @@ function App() {
       <br />
       {currentData.length % 10}
       <br />
+      {`isLetter: ${isLetter}`}
+      <br />
     </div>
   )
 }
 
 export default App
 
-/* to do */
-//Add searching: value
-//return Welcome if empty
-//fix isLetter
-//Loader
