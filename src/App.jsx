@@ -88,8 +88,8 @@ function App() {
       <Letters searchByLetter={searchByLetter} />
       {!notFound ? <ResultsContainer currentData={currentData} page={page} /> : <NotFound />}
       <Pagination nextPage={nextPage} prevPage={prevPage} />
-      {`currentData.length: ${currentData.length}`}
       {/* For testig: */}
+      {/* {`currentData.length: ${currentData.length}`}
       <br />
       {`Page: ${page}`}
       <br />
@@ -98,7 +98,7 @@ function App() {
       {currentData.length % 10}
       <br />
       {`isLetter: ${isLetter}`}
-      <br />
+      <br /> */}
     </div>
   )
 }

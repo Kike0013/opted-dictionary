@@ -1,0 +1,18 @@
+#letters-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: #724a34;
+    border-bottom: 1px solid black;
+}
+
+.letter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    padding: 5px;
+    width: 1.5em;
+    height: 1.5em;
+}

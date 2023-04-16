@@ -1,5 +1,6 @@
 import React from 'react'
 import { VariableSizeList as List } from 'react-window'
+import '../styles/Results.css'
 
 const ResultsContainer = ({ currentData, page }) => {
 
@@ -21,7 +22,7 @@ const ResultsContainer = ({ currentData, page }) => {
     );
 
     return (
-        <div>
+        <div id='results-container'>
             <List
                 height={600}
                 itemCount={

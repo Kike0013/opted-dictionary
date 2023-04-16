@@ -1,4 +1,5 @@
 import React from 'react'
+import '../styles/Letters.css'
 
 const Letters = ({ searchByLetter }) => {
 
@@ -6,9 +7,9 @@ const Letters = ({ searchByLetter }) => {
     const letters = AZ.map((letter) => { return { label: letter, value: letter } })
 
     return (
-        <div style={{ display: 'flex', gap: '10px' }}>
+        <div id='letters-container'>
             {letters.map((el, index) => {
-                return <div key={index} onClick={() => searchByLetter(el.label)}>
+                return <div className='letter' key={index} onClick={() => searchByLetter(el.label)}>
                     <p>{el.label}</p>
                 </div>
             })}</div>
