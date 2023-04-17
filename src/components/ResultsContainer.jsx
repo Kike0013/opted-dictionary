@@ -1,23 +1,19 @@
 import React from 'react'
-import { VariableSizeList as List } from 'react-window'
+import { FixedSizeList as List } from 'react-window'
 import '../styles/Results.css'
 
 const ResultsContainer = ({ currentData, page }) => {
 
-    const rowHeights = new Array(currentData.length)
-        .fill(100)
-
-    const getItemSize = index => rowHeights[index];
-
     const Result = ({ index, style }) => (
-        <div style={style}>
-            <h3>
-                {currentData[index + (page * 10)].word}
-            </h3>
-            <h4>
-                {currentData[index + (page * 10)].definition}
-            </h4>
-            <br />
+        <div style={style} className='result-card'>
+            <div>
+                <h3 className='word'>
+                    {currentData[index + (page * 10)].word}
+                </h3>
+                <h4 className='definition'>
+                    {currentData[index + (page * 10)].definition}
+                </h4>
+            </div>
         </div>
     );
 
@@ -29,7 +25,7 @@ const ResultsContainer = ({ currentData, page }) => {
                     currentData.length - (page * 10) >= 10
                         ? 10
                         : currentData.length % 10}
-                itemSize={getItemSize}
+                itemSize={90}
                 width={'100%'}
             >
                 {Result}

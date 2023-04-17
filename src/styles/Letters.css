@@ -5,6 +5,7 @@
     padding: 10px;
     background-color: #724a34;
     border-bottom: 1px solid black;
+    flex-wrap: wrap;
 }
 
 .letter {

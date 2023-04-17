@@ -5,8 +5,8 @@ import '../styles/Pagination.css'
 export const Pagination = ({ prevPage, nextPage }) => {
     return (
         <div id='pagination-container'>
-            <button onClick={() => prevPage()}>Previous</button>
-            <button onClick={() => nextPage()}>Next</button>
+            <button onClick={() => prevPage()}>&lt;</button>
+            <button onClick={() => nextPage()}>&gt;</button>
         </div>
     )
 }

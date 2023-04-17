@@ -1,5 +1,23 @@
-#results-container{
-    padding: 0px 0px 0px 20px;
+#results-container {
     margin: 10PX;
     border: 2px solid black;
+}
+
+.result-card {
+    box-sizing: border-box;
+    padding: 0px 20px 0px 20px;
+}
+
+.word {
+    font-family: 'Arial';
+    font-size: x-large;
+}
+
+.definition {
+    font-family: 'Arial';
+    font-size: large;
+    color: #e2e2e2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
