@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../assets/logo.svg'
+import logo from '../assets/logo-text.svg'
 import "../styles/Navbar.css"
 
 const Navbar = ({ handleSearch, searchValue, exactValue, defValue }) => {
@@ -7,7 +7,7 @@ const Navbar = ({ handleSearch, searchValue, exactValue, defValue }) => {
   return (
     <div id='navbar-container'>
       <div>
-        <img id='logo-img' src={logo} alt='OPTED Dictionary' />
+        <img id='logo-text' src={logo} alt='OPTED Dictionary' />
       </div>
       <div id='form-container'>
         <form id="main-form" onSubmit={(e) => handleSearch(searchValue, exactValue.current.checked, defValue.current.checked, e)}>

@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react'
 import { loadDictionary } from './core/services/netService/dictionaryService'
 import './styles/App.css'
 import { Pagination } from './components/Pagination'
+import Results from './components/Results'
 import NotFound from './components/NotFound'
 
 function App() {
@@ -86,7 +87,11 @@ function App() {
     <div className="App">
       <Navbar handleSearch={handleSearch} searchValue={searchValue} exactValue={exactValue} defValue={defValue} />
       <Letters searchByLetter={searchByLetter} />
-      {!notFound ? <ResultsContainer currentData={currentData} page={page} /> : <NotFound />}
+      <ResultsContainer  >
+        {!notFound ?
+          <Results currentData={currentData} page={page} />
+          : <NotFound />}
+      </ResultsContainer>
       <Pagination nextPage={nextPage} prevPage={prevPage} />
       {/* For testig: */}
       {/* {`currentData.length: ${currentData.length}`}

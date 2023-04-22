@@ -1,6 +1,7 @@
 #results-container {
     margin: 10PX;
     border: 2px solid black;
+    height: 600px;
 }
 
 .result-card {

@@ -5,8 +5,8 @@
     background-color: #5f3100;
 }
 
-#logo-img {
-    width: 100px;
+#logo-text {
+    width: 200px;
 }
 
 #form-container {
@@ -30,4 +30,10 @@
 #search-btn {
     padding: 20px;
     border-radius: 30px;
+}
+
+#search-btn:hover,
+#match-search:hover,
+#include-definition{
+    cursor: pointer;
 }
