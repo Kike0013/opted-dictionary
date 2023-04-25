@@ -92,7 +92,7 @@ function App() {
           <Results currentData={currentData} page={page} />
           : <NotFound />}
       </ResultsContainer>
-      <Pagination nextPage={nextPage} prevPage={prevPage} />
+      <Pagination nextPage={nextPage} prevPage={prevPage} searchValue={searchValue?.current?.value} />
       {/* For testig: */}
       {/* {`currentData.length: ${currentData.length}`}
       <br />
