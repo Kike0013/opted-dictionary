@@ -75,6 +75,10 @@ function App() {
     defCheck.current.checked = false;
   }
 
+  const firstPage = () => !page
+    ? null
+    : setPage(0)
+
   const prevPage = () => !page
     ? null
     : setPage(prevPage => prevPage - 1)
@@ -82,6 +86,10 @@ function App() {
   const nextPage = () => currentData.length - (page * 10) <= 10
     ? null
     : setPage(prevPage => prevPage + 1)
+
+  const lastPage = () => currentData.length - (page * 10) <= 10
+    ? null
+    : setPage(Math.floor(currentData.length / 10)) //--------> Aquí me quedé
 
   return (
     <div className="App">
@@ -92,7 +100,16 @@ function App() {
           <Results currentData={currentData} page={page} />
           : <NotFound />}
       </ResultsContainer>
-      <Pagination nextPage={nextPage} prevPage={prevPage} searchValue={searchValue?.current?.value} />
+      <Pagination
+        firstPage={firstPage}
+        nextPage={nextPage}
+        prevPage={prevPage}
+        lastPage={lastPage}
+        page={page}
+        searchValue={searchValue?.current?.value}
+        show={Boolean(currentData.length > 10)}
+        length={Math.floor(currentData.length / 10)}
+      />
       {/* For testig: */}
       {/* {`currentData.length: ${currentData.length}`}
       <br />

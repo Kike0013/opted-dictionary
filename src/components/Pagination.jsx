@@ -2,7 +2,7 @@ import React from 'react'
 import '../styles/Pagination.css'
 
 
-export const Pagination = ({ prevPage, nextPage, searchValue }) => {
+export const Pagination = ({ firstPage, prevPage, nextPage, lastPage, page, searchValue, show, length }) => {
     return (
         <>
             {
@@ -17,10 +17,24 @@ export const Pagination = ({ prevPage, nextPage, searchValue }) => {
                     </div>
                     : null
             }
-            <div id='pagination-container'>
-                <button className='btn-pagination' onClick={() => prevPage()}>&lt;</button>
-                <button className='btn-pagination' onClick={() => nextPage()}>&gt;</button>
-            </div>
+            {
+                !show
+                    ? null
+                    : <div>
+                        <div id='pagination-container'>
+                            <button className='btn-pagination' onClick={() => firstPage()}>|&lt;</button>
+                            <button className='btn-pagination' onClick={() => prevPage()}>&lt;</button>
+                            <button className='btn-pagination' onClick={() => nextPage()}>&gt;</button>
+                            <button className='btn-pagination' onClick={() => lastPage()}>&gt;|</button>
+                        </div>
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                        }}>
+                            <h3>Page {page} of {length}</h3>
+                        </div>
+                    </div>
+            }
         </>
     )
 }
