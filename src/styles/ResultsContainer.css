@@ -12,6 +12,7 @@
 .word {
     font-family: 'Arial';
     font-size: x-large;
+    cursor: pointer;
 }
 
 .definition {
@@ -21,4 +22,5 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-bottom: 1px solid black;
 }
