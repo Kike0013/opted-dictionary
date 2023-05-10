@@ -13,7 +13,7 @@ function App() {
   const [data, setData] = useState([])
   const [currentData, setCurrentData] = useState([])
   const [isLetter, setIsLetter] = useState(false)
-  // const [isLoading, setIsLoading] = useState(true)
+  const [isSelected, setIsSelected] = useState(null)
   const [notFound, setNotFound] = useState(false)
   const [page, setPage] = useState(0)
 
@@ -40,6 +40,7 @@ function App() {
   const searchByLetter = (letter) => {
     !isLetter && setIsLetter(true)
     resetInputs(searchValue, exactValue, defValue)
+    setIsSelected(letter)
     let arr = data.filter(el => el.word.indexOf(letter) === 0)
     setCurrentData(arr)
     setPage(0)
@@ -49,6 +50,7 @@ function App() {
   const handleSearch = (searchValue, isExact, isDef, event) => {
     event && event.preventDefault();
     setIsLetter(false)
+    setIsSelected(null)
     if (!searchValue.current.value) return null
 
     let arr;
@@ -56,7 +58,8 @@ function App() {
     isExact
       ? arr = data.filter(el => el.word.toLowerCase() === searchValue.current.value.toLowerCase())
       : isDef
-        ? arr = data.filter(el => el.word.toLowerCase().includes(searchValue.current.value.toLowerCase()) || el.definition.toLowerCase().includes(searchValue.current.value.toLowerCase()))
+        ? arr = data.filter(el => el.word.toLowerCase().includes(searchValue.current.value.toLowerCase())
+          || el.definition.toLowerCase().includes(searchValue.current.value.toLowerCase()))
         : arr = data.filter(el => el.word.toLowerCase().includes(searchValue.current.value.toLowerCase()))
 
     if (arr.length) {
@@ -89,12 +92,12 @@ function App() {
 
   const lastPage = () => currentData.length - (page * 10) <= 10
     ? null
-    : setPage(Math.floor(currentData.length / 10)) //--------> Aquí me quedé
+    : setPage(Math.floor(currentData.length / 10))
 
   return (
     <div className="App">
       <Navbar handleSearch={handleSearch} searchValue={searchValue} exactValue={exactValue} defValue={defValue} />
-      <Letters searchByLetter={searchByLetter} />
+      <Letters searchByLetter={searchByLetter} isSelected={isSelected}/>
       <ResultsContainer  >
         {!notFound ?
           <Results currentData={currentData} page={page} />
@@ -110,17 +113,6 @@ function App() {
         show={Boolean(currentData.length > 10)}
         length={Math.floor(currentData.length / 10)}
       />
-      {/* For testig: */}
-      {/* {`currentData.length: ${currentData.length}`}
-      <br />
-      {`Page: ${page}`}
-      <br />
-      {currentData.length - (page * 10)}
-      <br />
-      {currentData.length % 10}
-      <br />
-      {`isLetter: ${isLetter}`}
-      <br /> */}
     </div>
   )
 }

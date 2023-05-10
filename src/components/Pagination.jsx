@@ -1,7 +1,6 @@
 import React from 'react'
 import '../styles/Pagination.css'
 
-
 export const Pagination = ({ firstPage, prevPage, nextPage, lastPage, page, searchValue, show, length }) => {
     return (
         <>
@@ -12,7 +11,7 @@ export const Pagination = ({ firstPage, prevPage, nextPage, lastPage, page, sear
                         justifyContent: 'center',
                     }}>
                         <h3 style={{
-                            margin: '0px 0px 5px 0px'
+                            margin: '0px 0px 10px 0px'
                         }}>Searching: {searchValue}</h3>
                     </div>
                     : null
