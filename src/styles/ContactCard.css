@@ -1,0 +1,9 @@
+#contact-container{
+    display: flex;
+    gap: 20px;
+    padding: 0 10px 0 10px;
+}
+
+.contact-img {
+    width: 50px;
+}
