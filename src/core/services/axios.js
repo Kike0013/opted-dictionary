@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const AxiosContext = Axios.create({
-    baseURL: '/src/core/data/',
+    baseURL: '/data',
     timeout: 2000
 })
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../assets/logo-text.svg'
+import logo from '../../public/assets/logo-text.svg'
 import "../styles/Navbar.css"
 import ContactCard from './ContactCard'
 
