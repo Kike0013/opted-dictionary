@@ -1,5 +1,5 @@
 import React from 'react'
-import notFound from '../../public/assets/not-found.svg'
+import notFound from '../assets/not-found.svg'
 import '../styles/NotFound.css'
 
 const NotFound = () => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/ContactCard.css'
-import linkedIn from '../../public/assets/linkedin-icon.svg'
-import github from '../../public/assets/github-icon.svg'
+import linkedIn from '../assets/linkedin-icon.svg'
+import github from '../assets/github-icon.svg'
 
 const ContactCard = () => {
 
