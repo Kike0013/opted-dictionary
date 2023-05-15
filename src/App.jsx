@@ -6,6 +6,7 @@ import { loadDictionary } from './core/services/netService/dictionaryService'
 import './styles/App.css'
 import { Pagination } from './components/Pagination'
 import Results from './components/Results'
+import Loading from './components/Loading'
 import NotFound from './components/NotFound'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   const [currentData, setCurrentData] = useState([])
   const [isLetter, setIsLetter] = useState(false)
   const [isSelected, setIsSelected] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
   const [notFound, setNotFound] = useState(false)
   const [page, setPage] = useState(0)
 
@@ -34,7 +36,13 @@ function App() {
         }
         return 0;
       })))
-      .catch(error => console.log(error))
+      .then(
+        setIsLoading(false)
+      )
+      .catch(error => {
+        setIsLoading(false)
+        console.log(error)
+      })
   }, [])
 
   const searchByLetter = (letter) => {
@@ -96,23 +104,26 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar handleSearch={handleSearch} searchValue={searchValue} exactValue={exactValue} defValue={defValue} />
-      <Letters searchByLetter={searchByLetter} isSelected={isSelected}/>
-      <ResultsContainer  >
-        {!notFound ?
-          <Results currentData={currentData} page={page} />
-          : <NotFound />}
-      </ResultsContainer>
-      <Pagination
-        firstPage={firstPage}
-        nextPage={nextPage}
-        prevPage={prevPage}
-        lastPage={lastPage}
-        page={page}
-        searchValue={searchValue?.current?.value}
-        show={Boolean(currentData.length > 10)}
-        length={Math.floor(currentData.length / 10)}
-      />
+      {isLoading
+        ? <Loading />
+        : <><Navbar handleSearch={handleSearch} searchValue={searchValue} exactValue={exactValue} defValue={defValue} />
+          <Letters searchByLetter={searchByLetter} isSelected={isSelected} />
+          <ResultsContainer  >
+            {!notFound ?
+              <Results currentData={currentData} page={page} />
+              : <NotFound />}
+          </ResultsContainer>
+          <Pagination
+            firstPage={firstPage}
+            nextPage={nextPage}
+            prevPage={prevPage}
+            lastPage={lastPage}
+            page={page}
+            searchValue={searchValue?.current?.value}
+            show={Boolean(currentData.length > 10)}
+            length={Math.floor(currentData.length / 10)}
+          /></>
+      }
     </div>
   )
 }
