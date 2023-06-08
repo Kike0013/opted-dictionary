@@ -28,6 +28,7 @@
 
 #search-box-button {
     display: flex;
+    justify-content: center;
 }
 
 #input-search,
@@ -37,10 +38,7 @@
     font-size: large;
 }
 
-#match-container {
-    padding: 10px;
-}
-
+#match-container,
 #include-container {
     padding: 10px;
 }
@@ -125,6 +123,16 @@
             width: 100%;
             justify-content: center;
         }
+    }
+
+    @media (max-width: 402px) {
+       #input-search {
+        width: 50%;
+       }
+
+       #logo-text {
+        width: 90px;
+    }
     }
 
 }
